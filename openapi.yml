@@ -1,0 +1,72 @@
+openapi: 3.0.0
+info:
+  title: Marketplace API
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3000
+    description: Development server
+
+paths:
+  /api/marketplace/event:
+    post:
+      summary: Create a marketplace event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarketplaceEvent'
+      responses:
+        201:
+          description: Marketplace event created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketplaceEvent'
+
+components:
+  schemas:
+    MarketplaceEvent:
+      type: object
+      properties:
+        raw:
+          type: array
+          items:
+            type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        totalResults:
+          type: integer
+
+    Item:
+      type: object
+      properties:
+        raw:
+          type: array
+          items:
+            type: integer
+        offerId:
+          type: integer
+        isTradable:
+          type: integer
+        isTradableReadable:
+          type: string
+        type:
+          type: integer
+        typeReadable:
+          type: string
+        spriteId:
+          type: integer
+        itemName:
+          type: string
+        price:
+          type: integer
+        timeLeft:
+          type: integer
+        average:
+          type: integer
+        amount:
+          type: integer
